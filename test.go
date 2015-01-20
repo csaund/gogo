@@ -27,7 +27,10 @@ const (
 	Bpiece
 )
 
-type Board struct{ cells [][]int }
+type Board struct{ 
+	cells [][]int 
+	size int
+}
 
 func (b *Board) init() {
 	for _,i := range(b.cells){
@@ -45,19 +48,26 @@ func newBoard(sqsize int)(*Board){
 		b.cells[i] = make([]int, sqsize)
 	}
 	b.init()
+	b.size = sqsize
 	return b
 }
 
 func (b *Board) printBoard(){
+	sep := strings.Repeat("-", b.size*4 + 1)
+	fmt.Println(sep)
 	for _,i := range(b.cells){
+		lnstr := make([]string, b.size)
 		for ind,_ := range(i){
 			if i[ind] == Wpiece{
-				fmt.Println('O')
+				lnstr[ind] = " O "
 			} else if i[ind] == Bpiece{
-				fmt.Println('X')
+				lnstr[ind] = " X "
 			} else{
-				fmt.Println(' ')
+				lnstr[ind] = "   "		
 			}
 		}
+		line := strings.Join(lnstr, "|")
+		fmt.Printf("|%s|\n", line)
+		fmt.Println(sep)
 	}
 }

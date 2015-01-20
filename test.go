@@ -109,3 +109,39 @@ func (b *Board) placeStone(Player, i, j int) error {
 func (b *Board) effectBoard() {
 
 }
+
+func (b *Board) isSurrounded(i, j int) bool{
+	//if completely surrounded by another color
+	if (b.cells[i][j+1] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&
+	   (b.cells[i][j-1] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&
+	   (b.cells[i+1][j] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&
+	   (b.cells[i-1][j] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&{
+	   	b.cells[i][j] 
+	   }
+
+	//adjacent one of same color is surrounded
+	//not surrounded if there's a blank space next to it. 
+
+	//if surrounded on all sides by other colors OR squares in question
+		//then it's surrounded
+
+}
+
+func (b *Board) otherPlayer(i, j int) int{
+	if b.cells[i][j] == Wpiece{
+		return Bpiece
+	} else if b.cells[i][j] == Bpiece{
+		return Wpiece
+	} else{
+		return Nopiece
+	}
+}
+
+func (b *Board) inBounds(i, j int) bool{
+	if i >= 0 && i < b.size &&
+	   j >= 0 && j < b.size{
+	   	return true
+	   } else{
+	   	return false
+	   }
+}

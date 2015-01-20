@@ -115,9 +115,9 @@ func (b *Board) isSurrounded(i, j int) bool{
 	if (b.cells[i][j+1] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&
 	   (b.cells[i][j-1] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&
 	   (b.cells[i+1][j] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&
-	   (b.cells[i-1][j] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) {
-			continue
-		}
+	   (b.cells[i-1][j] == b.otherPlayer(b.cells[i][j]) || !b.inBounds(i,j)) &&{
+	   	b.cells[i][j] 
+	   }
 
 	//adjacent one of same color is surrounded
 	//not surrounded if there's a blank space next to it. 
